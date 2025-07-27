@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.holdings-data div .head{
+  font-size: 10px;
+}
+
+.holdings-data div .sub-head{
+  font-size: 12px;
+  font-weight: 600;
+  margin:8px;
+}
+
+.menu{
+  color:black;
+}
+
+.menu-selected:hover{
+  color:orange;
+}
+
+.profit, .up{
+    color:rgb(30, 222, 94);
+}
+
+.loss, .down{
+  color:red;
+}
+
+.item {
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    
+    
+}
+
+.itemInfo {
+  display: inline;
+
+}
+
+.buy {
+  display: inline;
+  border: none;
+  border-radius: 6px;
+  background-color: blueviolet;
+}
+
+.actions {
+  display: inline;
+}
+
+.more {
+  border: none;
+  border-radius: 10px;
+}
+
+.sell {
+  border: none;
+  border-radius: 6px;
+  background-color: blue;
+}
+
+.item-h:hover {
+  background-color: rgb(238, 238, 238);
+  border-radius: 3px;
+}
