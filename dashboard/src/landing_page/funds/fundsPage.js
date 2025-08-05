@@ -12,7 +12,7 @@ function FundsPage() {
              </div>
 
              <div className='row'>
-              <div className='mb-1 ms-5'><i class="fa-regular fa-clock fa-sm me-1"></i>Equity</div>
+              <div className='mb-1 ms-5'><i className="fa-regular fa-clock fa-sm me-1"></i>Equity</div>
                <div className='col-6 border ms-5 mt-3' style={{height:"79vh", width:"70vh"}}>
                    <div className='row pt-3 ps-4 pe-4'><div className='col-6 text-start fs-6 text-muted'>Average margin</div><div className='col-6 text-end fs-5'>4,053.53</div></div>
                    <div className='row pt-3 ps-4 pe-4'><div className='col-6 text-start fs-6 text-muted'>Used margin</div><div className='col-6 text-end fs-5'>3,757.55</div></div>

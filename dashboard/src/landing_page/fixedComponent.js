@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Tooltip, Grow } from '@mui/material';
 import { watchlist } from "./../data/data.js";
@@ -8,8 +8,14 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 import "./../index.css";
+import BuyActionWindow from './buyaction/BuyActionWindow.js';
+import GeneralContext, { GeneralContextProvider } from './generalcontext/GeneralContext.js';
+import DoughnutChart from './chart/DoughnutChart';
 
 function FixedComponent() {
+
+  const { isBuyWindowOpen, selectedStockUID } = useContext(GeneralContext);
+
 
   const [seletedMenu, setSeletecMenu] = useState(0);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
@@ -24,6 +30,62 @@ function FixedComponent() {
 
   const menuClass = "menu";
   const activeMenuClass = "menu-selected";
+
+  const labels = watchlist.map((subArray)=>subArray["name"]);
+  
+  const data = {
+    labels,
+    datasets: [
+      {
+      label: 'Stock Prices',
+      data: watchlist.map((stock)=>stock.price),
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+      ],
+      borderWidth: 1,
+    },
+    ]
+  }
+
+//   export const data = {
+//   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//   datasets: [
+//     {
+//       label: '# of Votes',
+//       data: [12, 19, 3, 5, 2, 3],
+//       backgroundColor: [
+//         'rgba(255, 99, 132, 0.2)',
+//         'rgba(54, 162, 235, 0.2)',
+//         'rgba(255, 206, 86, 0.2)',
+//         'rgba(75, 192, 192, 0.2)',
+//         'rgba(153, 102, 255, 0.2)',
+//         'rgba(255, 159, 64, 0.2)',
+//       ],
+//       borderColor: [
+//         'rgba(255, 99, 132, 1)',
+//         'rgba(54, 162, 235, 1)',
+//         'rgba(255, 206, 86, 1)',
+//         'rgba(75, 192, 192, 1)',
+//         'rgba(153, 102, 255, 1)',
+//         'rgba(255, 159, 64, 1)',
+//       ],
+//       borderWidth: 1,
+//     },
+//   ],
+// };
 
   return (
     <div className='row' style={{ width: "100%" }}>
@@ -48,18 +110,24 @@ function FixedComponent() {
             );
           })}
         </ul>
-
-
+        {/* <GeneralContextProvider>
+            // <BuyActionWindow/>
+        </GeneralContextProvider> */}
+        {isBuyWindowOpen && <BuyActionWindow uid={selectedStockUID} />}
+        <DoughnutChart data={data}/>
       </div>
+
+      
       <div style={{ height: "10vh", width: "60%", fontSize: "12px", padding: "18px", marginLeft: "10px" }} className='row border-bottom'>
-        <img src='../media/images/logo.png' className='col-1 me-5' style={{ height: '30px', width: "50px" }}></img>
-        <Link to='./dashboard' className='col-4 text-decoration-none text-black text-end'><span className={seletedMenu === 0 ? activeMenuClass : menuClass}>Dashboard</span></Link>
+        <img src='../media/images/logo.jpg' className='col-1 me-5' style={{ height: '40px', width: "60px" , borderRadius:"50%" }}></img>
+        <Link to='./dashboard' className='col-3 text-decoration-none text-black text-end'><span className={seletedMenu === 0 ? activeMenuClass : menuClass}>Dashboard</span></Link>
         <Link to='./orders' className='col-1 text-decoration-none text-black'><span className={seletedMenu === 1 ? activeMenuClass : menuClass} onClick={() => { handleMenuClick(1) }}>Orders</span></Link>
         <Link to='./holdings' className='col-1 text-decoration-none text-black'><span className={seletedMenu === 2 ? activeMenuClass : menuClass} onClick={() => { handleMenuClick(2) }}>Holdings</span></Link>
         <Link to='./positions' className='col-1 text-decoration-none text-black'><span className={seletedMenu === 3 ? activeMenuClass : menuClass} onClick={() => { handleMenuClick(3) }}>Positions</span></Link>
         <Link to='./funds' className='col-1 text-decoration-none text-black'><span className={seletedMenu === 4 ? activeMenuClass : menuClass} onClick={() => { handleMenuClick(4) }}>Funds</span></Link>
-        <Link to='./apps' className='col-1 text-decoration-none text-black'><span className={seletedMenu === 6 ? activeMenuClass : menuClass} onClick={() => { handleMenuClick(5) }}>Apps</span></Link>
-        <Link to='./profile' className='col-1 text-decoration-none text-black border-start ps-4 row'><i className="fa-solid fa-circle-user"><span className={seletedMenu === 6 ? activeMenuClass : menuClass} onClick={() => { handleMenuClick(6) }}>Profile</span></i></Link>
+        <Link to='./apps' className='col-1 text-decoration-none text-black'><span className={seletedMenu === 5 ? activeMenuClass : menuClass} onClick={() => { handleMenuClick(5) }}>Apps</span></Link>
+        <a href='http://localhost:3001' className='col-1 text-decoration-none text-black'><span className={seletedMenu === 6 ? activeMenuClass : menuClass} onClick={() => { handleMenuClick(6) }}>Home</span></a> { /* change after deploy*/}
+        <Link to='./profile' className='col-1 text-decoration-none text-black border-start ps-4 row'><i className="fa-solid fa-circle-user"><span className={seletedMenu === 6 ? activeMenuClass : menuClass} onClick={() => { handleProfileClick }}>Profile</span></i></Link>
       </div>
 
     </div>
@@ -82,7 +150,7 @@ const WatchListItem = ({ stock }) => {
   }
 
   return (
-    <p onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='item-h'>
+    <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='item-h'>
       <div className='item border-bottom p-2'>
         <span className={stock.isDown ? "down" : "up"}>{stock.name}</span>
         <div className='itemInfo'>
@@ -96,31 +164,35 @@ const WatchListItem = ({ stock }) => {
         </div>
       </div>
       {showWatchlistActions && <WatchListActions uid={stock.name} />}
-    </p>
+    </div>
   );
 
 }
 
 const WatchListActions = ({ uid }) => {
+  const generalContext = useContext(GeneralContext);
+  const handleBuyClick = () => {
+    generalContext.openBuyWindow(uid);
+  }
   return (
     <span className='actions'>
       <span className='p-2'>
-        <Tooltip title="buy (B)" placement="top" arrow TransitionComponet={Grow}>
-          <button className='buy'>Buy</button>
+        <Tooltip title="buy (B)" placement="top" arrow TransitionComponent={Grow}  onClick={handleBuyClick}>
+          <button className='buy text-white'>Buy</button>
         </Tooltip>
       </span>
       <span className='p-2'>
-        <Tooltip title="Sell (S)" placement="top" arrow TransitionComponet={Grow}>
-          <button className='sell'>Sell</button>
+        <Tooltip title="Sell (S)" placement="top" arrow TransitionComponent={Grow}>
+          <button className='sell text-white'>Sell</button>
         </Tooltip>
       </span>
       <span className='p-2'>
-        <Tooltip title="Analytics (A)" placement="top" arrow TransitionComponet={Grow}>
+        <Tooltip title="Analytics (A)" placement="top" arrow TransitionComponent={Grow}>
           <button className='btn'><BarChartIcon/></button>
         </Tooltip>
       </span>
       <span className='p-2'>
-        <Tooltip title="more (m)" placement="top" arrow TransitionComponet={Grow}>
+        <Tooltip title="more (m)" placement="top" arrow TransitionComponent={Grow}>
           <button className='more'><MoreHorizIcon/></button>
         </Tooltip>
       </span>

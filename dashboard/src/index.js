@@ -11,12 +11,19 @@ import AppsPage from './landing_page/apps/appsPage.js';
 import ProfilePage from './landing_page/profile/profilePage.js';
  
 import FixedComponent from './landing_page/fixedComponent.js';
+import BuyActionWindow from './landing_page/buyaction/BuyActionWindow.js';
+import { GeneralContextProvider } from './landing_page/generalcontext/GeneralContext.js';
+
+
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
+  <GeneralContextProvider>
     <FixedComponent/>
+  </GeneralContextProvider>
     <Routes><Route path='/dashboard' element={<HomePage />}></Route></Routes>
     <Routes><Route path='/orders' element={<OrdersPage/>}></Route></Routes>
     <Routes><Route path='/holdings' element={<HoldingsPage />}></Route></Routes>

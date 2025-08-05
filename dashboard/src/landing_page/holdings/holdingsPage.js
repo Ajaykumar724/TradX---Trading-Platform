@@ -1,14 +1,40 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import "./../../index.css";
 
-import { holdings } from "./../../data/data.js"
+// import { holdings } from "./../../data/data.js";
+
+import axios from 'axios';
+import { VerticalChart } from '../chart/VerticalChart';
 
 
 
 function HoldingsPage() {
+
+  const [allHoldings, setAllHoldings] = useState([]);
+
+  useEffect(()=>{
+    axios.get("http://localhost:3002/allHoldings").then((res)=>{
+      console.log(res.data);
+      setAllHoldings(res.data);
+    });
+  },[]);
+
+  const labels = allHoldings.map((subArray)=>subArray["name"]);
+
+  const data = {
+    labels,
+    datasets : [
+      {
+      label: 'Price',
+      data: allHoldings.map((stock) => stock.price),
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    },
+    ],
+  };
+
   return (
     <div className='bg-white m-3' style={{ position: "relative", height: "90vh", width: "60%", left: "40%", bottom: "90vh" }}>
-      <div className='fs-5 text-muted'>Holdings ({holdings.length})</div>
+      <div className='fs-5 text-muted'>Holdings ({allHoldings.length})</div>
       <div className='row holdings-data mt-5 pt-2 border-top'>
         <div className='col-2'>
           <div className='head'>Instrument</div>
@@ -36,7 +62,7 @@ function HoldingsPage() {
         </div>
       </div>
 
-      {holdings.map((stock, index) => {
+      {allHoldings.map((stock, index) => {
         const curValue = stock.price * stock.qty;
         const isProfit = curValue - stock.avg * stock.qty >= 0.0;
         const profClass = isProfit ? "profit" : "loss";
@@ -71,6 +97,7 @@ function HoldingsPage() {
           </div>
         );
       })}
+           <VerticalChart className="sjdklfjiwwen" data={data}/>
     </div>
   )
 }

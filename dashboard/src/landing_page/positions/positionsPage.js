@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { positions } from "./../../data/data.js";
+// import { positions } from "./../../data/data.js";
 
+import axios from "axios";
 
 function PositionsPage() {
+  const [allPositions, setAllPositions] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3002/allPositions").then((res) => {
+
+      setAllPositions(res.data);
+    });
+  });
+
   return (
     <div className='bg-white m-3' style={{ position: "relative", height: "90vh", width: "60%", left: "40%", bottom: "90vh" }}>
-      <div className='fs-5 text-muted'>Positions ({positions.length})</div>
+      <div className='fs-5 text-muted'>Positions ({allPositions.length})</div>
 
       <div className='row holdings-data mt-4 pt-3 pb-3 border-top border-bottom'>
         <div className='col-3'>
@@ -32,14 +42,14 @@ function PositionsPage() {
         </div>
       </div>
 
-      {positions.map((stock, index) => {
+      {allPositions.map((stock, index) => {
         const curValue = stock.price * stock.qty;
         const isProfit = curValue - stock.avg * stock.qty >= 0.0;
         const profClass = isProfit ? "profit" : "loss";
         const dayClass = stock.isLoss ? "loss" : "profit";
 
         return (
-          <div className='row holdings-data pt-2 pb-2 border-bottom'>
+          <div className='row holdings-data pt-2 pb-2 border-bottom' key={index}>
             <div className='col-3'>
               <div className='head text-center text-danger' style={{ height: "100%", width: "30%", background: "#e2b9b9ff" }}>{stock.product}</div>
             </div>
@@ -65,7 +75,7 @@ function PositionsPage() {
         );
       })}
 
-      <div className='row holdings-data pt-2 pb-2 border-bottom'> 
+      <div className='row holdings-data pt-2 pb-2 border-bottom'>
         <div className='col-3'>
 
         </div>
