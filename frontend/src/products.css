@@ -1,0 +1,37 @@
+.prod-des-link{
+    text-decoration: none;
+}
+
+.arrow:hover{
+    position:relative;
+    left:5px;
+}
+
+.kite-image{
+     width:475px;
+     height:360px;
+}
+
+.inst-link{
+    height:40px;
+    width:152px;
+}
+
+.console-image{
+    width:500px;
+    height:500px;
+}
+
+.right-content{
+    margin-top:175px;
+    margin-bottom:175px;
+}
+
+.fund-image{
+    height:55px;
+    width:200px;
+}
+
+.zerodha-des{
+    font-size: 10px;
+}

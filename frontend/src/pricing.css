@@ -1,0 +1,11 @@
+.link {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 30px;
+    padding:0 30px 0 30px;
+    color: rgb(68, 127, 186);
+}
+
+.link:hover {
+    color:rgb(117, 123, 126);
+}

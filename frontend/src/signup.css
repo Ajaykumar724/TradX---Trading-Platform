@@ -1,0 +1,12 @@
+
+.optn:hover{
+   border: 1px solid rgb(0, 102, 255) !important;
+}
+
+.quest div h3{
+   font-weight: 400;
+   opacity : 1;
+   font-size: 20px;
+   margin-bottom: 20px;
+}
+

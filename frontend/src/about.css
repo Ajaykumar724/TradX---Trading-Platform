@@ -1,0 +1,30 @@
+.tag-line h2{
+   font-weight: 490;
+   opacity : 1;
+}
+
+.tag-des-link{
+    text-decoration: none;
+}
+
+.tag-des{
+    opacity:0.9;
+}
+
+.founder-img{
+    border-radius: 50%;
+    height:280px;
+    width:280px;
+}
+
+.CEO-name{
+    font-weight : 500 ;
+}
+
+.CEO-des{
+    font-size:15px;;
+}
+
+.CEO-des-link{
+    text-decoration: none;
+}
