@@ -126,7 +126,7 @@ function FixedComponent() {
         <Link to='./positions' className='col-1 text-decoration-none text-black'><span className={seletedMenu === 3 ? activeMenuClass : menuClass} onClick={() => { handleMenuClick(3) }}>Positions</span></Link>
         <Link to='./funds' className='col-1 text-decoration-none text-black'><span className={seletedMenu === 4 ? activeMenuClass : menuClass} onClick={() => { handleMenuClick(4) }}>Funds</span></Link>
         <Link to='./apps' className='col-1 text-decoration-none text-black'><span className={seletedMenu === 5 ? activeMenuClass : menuClass} onClick={() => { handleMenuClick(5) }}>Apps</span></Link>
-        <a href='http://localhost:3001' className='col-1 text-decoration-none text-black'><span className={seletedMenu === 6 ? activeMenuClass : menuClass} onClick={() => { handleMenuClick(6) }}>Home</span></a> { /* change after deploy*/}
+        <a href='https://tradx-trading-platform.onrender.com/' className='col-1 text-decoration-none text-black'><span className={seletedMenu === 6 ? activeMenuClass : menuClass} onClick={() => { handleMenuClick(6) }}>Home</span></a> { /* change after deploy*/}
         <Link to='./profile' className='col-1 text-decoration-none text-black border-start ps-4 row'><i className="fa-solid fa-circle-user"><span className={seletedMenu === 6 ? activeMenuClass : menuClass} onClick={() => { handleProfileClick }}>Profile</span></i></Link>
       </div>
 
