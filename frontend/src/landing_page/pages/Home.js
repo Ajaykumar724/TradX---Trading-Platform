@@ -14,7 +14,7 @@ const Home = () => {
         navigate("/login");
       }
       const { data } = await axios.post(
-        "http://localhost:3002",
+        "https://tradx-trading-platform-backend.onrender.com/",
         {},
         { withCredentials: true }
       );

@@ -36,7 +36,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3002/signpage",
+        "https://tradx-trading-platform-backend.onrender.com/signpage",
         {
           ...inputValue,
         },

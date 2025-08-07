@@ -33,7 +33,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3002/login",
+        "https://tradx-trading-platform-backend.onrender.com/login",
         {
           ...inputValue,
         },
