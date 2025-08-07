@@ -13,11 +13,11 @@ const cookieParser = require('cookie-parser');
 const authRoute = require("./Routes/AuthRoute");
 const port = process.env.PORT || 3002;
 
-// app.use(cors());
+app.use(cors());
 
 //update for frontend
 app.use(cors({
-    origin:"https://tradx-trading-platform.onrender.com/",  // change after deploy
+    origin:"*",  // change after deploy
     credentials:true,
 }));
 
