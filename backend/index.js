@@ -17,7 +17,7 @@ const port = process.env.PORT || 3002;
 
 //update for frontend
 app.use(cors({
-    origin:"http://localhost:3001",  // change after deploy
+    origin:"https://tradx-trading-platform.onrender.com/",  // change after deploy
     credentials:true,
 }));
 
